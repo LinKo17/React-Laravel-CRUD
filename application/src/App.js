@@ -7,23 +7,41 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home"
 import Profile from "./components/Profile"
 import Nav from "./components/Nav"
+import Edit from "./components/Edit";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
+import Error from "./components/Error";
+import RouteGuard from "./components/RouteGuard";
+import { useState } from "react";
 
-
-
-function App(){
+function App() {
   return (
     <>
-    <Router>
+      <Router>
         <Routes>
-          <Route path="/"  element={<Nav/>}>
-            <Route index element={<Home/>}/>
-            <Route path="/profile" element={<Profile/>}/>
+          <Route path="/" element={<Nav />}>
+            <Route index element={<Home />} />
+
+            <Route path="/profile" element={
+              <RouteGuard token={localStorage.getItem("token")}>
+                <Profile />
+              </RouteGuard>
+            } />
+
+            <Route path="edit/:id" element={
+              <RouteGuard token={localStorage.getItem("token")}>
+                <Edit />
+              </RouteGuard>
+            } />
+            
+            <Route path="/sign_up" element={<SignUp />} />
+            <Route path="/sign_in" element={<SignIn />} />
           </Route>
 
-          <Route path="*" element={<h1>Error </h1>}/>
-        </Routes>  
+          <Route path="*" element={<Error/>} />
+        </Routes>
 
-    </Router>
+      </Router>
     </>
   )
 }

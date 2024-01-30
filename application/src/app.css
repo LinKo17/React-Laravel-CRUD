@@ -1,0 +1,21 @@
+@media(max-width: 772px){
+    .action{
+        display: none;
+    }
+}
+
+@media(max-width: 536px){
+    .date{
+        display: none;
+    }
+}
+
+@media(max-width: 500px){
+    .register{
+        display: none;
+    }
+}
+
+.container_width{
+    max-width: 500px;
+}
