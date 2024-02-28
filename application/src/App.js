@@ -23,7 +23,7 @@ function App() {
             <Route index element={<Home />} />
 
             <Route path="/profile" element={
-              <RouteGuard token={localStorage.getItem("token")}>
+              <RouteGuard>
                 <Profile />
               </RouteGuard>
             } />
